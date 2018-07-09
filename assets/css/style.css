@@ -1,0 +1,17 @@
+.search {
+    border-radius: 5px;
+    border: solid #4aaaa5 2px;
+    background-color: #fff;
+    color: #000;
+}
+
+.search:hover {
+    background-color: #000;
+    color: #fff;
+}
+
+.gifButtons,
+.gifs {
+    margin: auto!important;
+    display: block!important;
+}
