@@ -1,58 +1,82 @@
-var gifButtons = ['Hugh Jackman', 'Ryan Gosling', 'Chris Pratt', 'Anne Hathaway', 'Jackie Chan', 'Will Smith'];
+var topics = ['Hugh Jackman', 'Emily Blunt', 'Chris Pratt', 'Anne Hathaway', 'Jackie Chan', 'Will Smith'];
+var favorites = [];
 
+for (i in topics) {
+    var oldButton = $('<button>').html(topics[i]);
+    oldButton.addClass('search');
+    $('.gifButtons').append(oldButton);
+};
+
+$('.message').html("Hello! :^)" + "<br>" + "Wecome to my Giphy API!");
+
+// add button function
 function addBut() {
     var userInput = $('input').val();
     userInput = userInput.replace(/\w\S*/g, function(userInput) {
         return userInput[0].toUpperCase() + userInput.slice(1).toLowerCase();
     });
-
     var newbutton = $('<button>').html(userInput);
     newbutton.addClass('search');
-    for (a in gifButtons) {
-        if (userInput != gifButtons[a]) {
-            $('.gifButtons').append(newbutton);
-            gifButtons.push(userInput);
-        } else {
-        	alert(userInput + " is already listed below.")
-        }
+    if (topics.indexOf(userInput) < 1) {
+        $('.gifButtons').append(newbutton);
+        topics.push(userInput);
+    } else {
+        $('.message').html(userInput + " is already listed!")
     }
 };
 
+// add button click function
 $('.add').on('click', function() {
     event.preventDefault();
     if ($('input').val() != "") {
         addBut();
+    } else {
+        $('.message').html("Don't forget to enter a name!");
     };
     $('input').val("");
 });
 
-for (i in gifButtons) {
-    var oldButton = $('<button>').html(gifButtons[i]);
-    oldButton.addClass('search');
-    $('.gifButtons').append(oldButton);
-};
+// clear gifs click function
+$('.cleargifs').on('click', function() {
+    event.preventDefault();
+    $('.gifs').empty();
+    $('#intro').addClass('message');
+    $('.message').html("Hello! :^)");
+    $('.search').removeClass('active');
+})
 
+// display gifs click function
 $(document).on('click', '.search', function() {
+    event.preventDefault();
     var search = $(this).html();
     var xhr = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=10";
     $('.gifs').empty();
+    $('.message').empty();
+    $('.message').removeClass('message');
     $.ajax({
         url: xhr,
     }).then(function(response) {
         for (i in response.data) {
-            var rating = $('<p>').text(response.data[i].rating);
+            var span = $('<span>');
+            var title = "Title: " + response.data[i].title + "<br>";
+            var rating = " Rating: " + response.data[i].rating + "<br>";
+            var dateImport = "Upload Date: " + response.data[i].import_datetime;
+            var gifInfo = $('<p>').html(title + rating + dateImport);
             var gifStill = $('<img>').attr('src', response.data[i].images.original_still.url);
+            span.append(gifStill);
+            span.append(gifInfo);
             gifStill.attr('data-still', response.data[i].images.original_still.url);
             gifStill.attr('data-animate', response.data[i].images.original.url);
             gifStill.attr('data-state', 'still');
             gifStill.addClass('click');
-            $('.gifs').append(gifStill);
-            $('.gifs').append(rating);
+            $('.gifs').append(span);
         }
-        console.log(response);
     });
+    $('.search').removeClass('active');
+    $(this).addClass('active');
 });
 
+// toggle animate gifs click function
 $(document).on('click', '.click', function() {
     var state = $(this).attr('data-state');
     var gif = $(this).attr('data-animate');
@@ -61,16 +85,60 @@ $(document).on('click', '.click', function() {
         $(this).attr('src', gif);
         $(this).attr('data-state', 'animate');
     }
-
     if (state == 'animate') {
         $(this).attr('src', still);
         $(this).attr('data-state', 'still');
     }
 });
 
+// add more gifs click function
+$('.addmore').on('click', function() {
+    event.preventDefault();
+    var search = $('.active').html();
+    var xhr = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=20";
+    $.ajax({
+        url: xhr,
+    }).then(function(response) {
+        if (search != undefined) {
+            for (i in response.data) {
+                var span = $('<span>').addClass('hi');
+                var rating = $('<p>').html("Rating: " + response.data[i].rating);
+                var gifStill = $('<img>').attr('src', response.data[i].images.original_still.url);
+                span.append(gifStill);
+                span.append(rating);
+                gifStill.attr('data-still', response.data[i].images.original_still.url);
+                gifStill.attr('data-animate', response.data[i].images.original.url);
+                gifStill.attr('data-state', 'still');
+                gifStill.addClass('click');
+                $('.gifs').append(span);
+            }
+        } else {
+            $('.message').html("No One Is Selected!");
+        }
+    });
+});
 
+// add gif to favorites click function
+$(document).on('click', '.addFav', function() {
+	event.preventDefault();
+    if ($('.active').html() != undefined) {
+        var favButton = $('<button>').html($('.active').html());
+        favButton.addClass('search');
+        $('.favorites').append(favButton);
+        favorites.push($('.active').html());
+    }
+});
 
+// back to top scroll function
+$(document).on('scroll', function() {
+    if ($(document).scrollTop()) {
+        $('#arrow').addClass('top');
+    } else {
+        $('#arrow').removeClass('top');
+    }
+});
 
-
-
-
+// back to top click function
+$(document).on('click', '.top', function() {
+    $('html, body').animate({ scrollTop: 0 }, 1000);
+});

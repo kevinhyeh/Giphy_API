@@ -1,3 +1,42 @@
+html,
+body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+h1,
+h2 {
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    border-bottom: solid #fff 2px;
+    margin-bottom: 20px;
+}
+
+
+form {
+    padding: 40px;
+    text-align: center;
+}
+
+input {
+    width: 60%;
+    margin: 0 0 15px 0;
+}
+
+p {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.message {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    padding: 300px 0 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
 .search {
     border-radius: 5px;
     border: solid #4aaaa5 2px;
@@ -5,13 +44,114 @@
     color: #000;
 }
 
-.search:hover {
+.add,
+.addmore,
+.addFav,
+.cleargifs {
+	border-radius: 5px;
+    border: solid #fff 2px;
+    background-color: #4aaaa5;
+    color: #fff;
+}
+
+.addmore,
+.cleargifs {
+	font-size: 20px;
+	margin: 20px 0 0;
+}
+
+.search {
+    margin: 5px 5px;
+}
+
+.add {
+    width: 30%;
+}
+
+.addFav {
+	margin: 10px 0 40px;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
     background-color: #000;
     color: #fff;
 }
 
-.gifButtons,
+.gifButtons {
+    padding: 0 30px;
+}
+
+button {
+    z-index: 1000;
+}
+
+.active {
+    background-color: #000;
+    color: #fff;
+}
+
 .gifs {
-    margin: auto!important;
-    display: block!important;
+    width: 90%;
+    margin: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    padding-left: 30px;
+}
+
+.click {
+    width: 250px;
+}
+
+.gifs p {
+    font-size: 15px;
+    text-align: center;
+    width: 250px;
+}
+
+span {
+    margin: 0 10px;
+    display: inline-block;
+}
+
+img {
+    cursor: pointer;
+}
+
+.top {
+    width: 50px;
+    height: 50px;
+    background-image: url('../images/up_arrow.svg');
+    background-repeat: no-repeat;
+    position: fixed;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    margin: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+.sidebar {
+    position: fixed;
+    z-index: 1;
+    background-color: #262626;
+    height: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    .sidebar {
+        position: static;
+        background-color: #fff;
+    }
+
+    input {
+        border: solid #262626 2px;
+    }
+
+    .gifButtons {
+        text-align: center;
+    }
 }
