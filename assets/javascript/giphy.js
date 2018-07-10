@@ -53,7 +53,7 @@ $('.cleargifs').on('click', function() {
 $(document).on('click', '.search', function() {
     event.preventDefault();
     var search = $(this).html();
-    var xhr = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=10";
+    var xhr = "https://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=10";
     $('.gifs').empty();
     $('.message').empty();
     $('.message').removeClass('message');
@@ -99,7 +99,7 @@ $(document).on('click', '.click', function() {
 $('.addmore').on('click', function() {
     event.preventDefault();
     var search = $('.active').html();
-    var xhr = "http://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=20";
+    var xhr = "https://api.giphy.com/v1/gifs/search?q=" + search + "&api_key=0UsaSP9p2kh0tXU4u0hPr0lVlSOW8O4i&limit=20";
     $.ajax({
         url: xhr,
     }).then(function(response) {
