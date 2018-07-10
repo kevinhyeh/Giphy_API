@@ -16,7 +16,7 @@ h2 {
 
 
 form {
-    padding: 40px;
+    padding: 30px;
     text-align: center;
 }
 
@@ -32,7 +32,7 @@ p {
 .message {
     font-family: 'Raleway', sans-serif;
     text-align: center;
-    padding: 300px 0 0;
+    padding: 260px 0 0;
     font-size: 30px;
     font-weight: bold;
 }
@@ -48,7 +48,7 @@ p {
 .addmore,
 .addFav,
 .cleargifs {
-	border-radius: 5px;
+    border-radius: 5px;
     border: solid #fff 2px;
     background-color: #4aaaa5;
     color: #fff;
@@ -56,8 +56,8 @@ p {
 
 .addmore,
 .cleargifs {
-	font-size: 20px;
-	margin: 20px 0 0;
+    font-size: 20px;
+    margin: 20px 0 0;
 }
 
 .search {
@@ -69,7 +69,7 @@ p {
 }
 
 .addFav {
-	margin: 10px 0 40px;
+    margin: 10px 0 40px;
 }
 
 button {
@@ -82,7 +82,7 @@ button:hover {
 }
 
 .gifButtons {
-    padding: 0 30px;
+    padding: 5px 0;
 }
 
 button {
@@ -141,7 +141,49 @@ img {
     height: 100%;
 }
 
+@media screen and (max-width: 1000px) {
+    h1,
+    h2 {
+        font-size: 30px;
+    }
+
+    button {
+        font-size: 14px;
+    }
+
+    .addmore,
+    .cleargifs {
+        margin: 4px;
+        font-size: 14px;
+    }
+
+    .addFav {
+        margin: 5px 0 10px;
+    }
+
+    .add {
+        line-height: 16px;
+    }
+}
+
 @media screen and (max-width: 767px) {
+    h1,
+    h2 {
+        color: #262626;
+        border-bottom: solid 2px #262626;
+    }
+
+    .add,
+    .addmore,
+    .addFav,
+    .cleargifs {
+        border: solid #262626 2px;
+    }
+
+    .add {
+    	line-height: 30px;
+    }
+
     .sidebar {
         position: static;
         background-color: #fff;
@@ -153,5 +195,9 @@ img {
 
     .gifButtons {
         text-align: center;
+    }
+
+    .message {
+        padding: 0;
     }
 }

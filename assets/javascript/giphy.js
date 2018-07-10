@@ -7,7 +7,8 @@ for (i in topics) {
     $('.gifButtons').append(oldButton);
 };
 
-$('.message').html("Hello! :^)" + "<br>" + "Wecome to my Giphy API!");
+$('.message').html("Hello!" + "<br>" + "Click on a name to recieve gifs" + "<br>" +
+        "Add any name to the list");
 
 // add button function
 function addBut() {
@@ -41,7 +42,10 @@ $('.cleargifs').on('click', function() {
     event.preventDefault();
     $('.gifs').empty();
     $('#intro').addClass('message');
-    $('.message').html("Hello! :^)");
+    if ($('.message').html() != "Hello!" + "<br>" + "Click on a name to recieve gifs" + "<br>" +
+        "Add any name to the list") {
+        $('.message').html("Your gifs have been cleared!");
+    }
     $('.search').removeClass('active');
 })
 
@@ -120,12 +124,17 @@ $('.addmore').on('click', function() {
 
 // add gif to favorites click function
 $(document).on('click', '.addFav', function() {
-	event.preventDefault();
-    if ($('.active').html() != undefined) {
-        var favButton = $('<button>').html($('.active').html());
-        favButton.addClass('search');
-        $('.favorites').append(favButton);
-        favorites.push($('.active').html());
+    var selectedActor = $('.active').html();
+    event.preventDefault();
+    if (favorites.indexOf(selectedActor) < 0) {
+        if (selectedActor != undefined) {
+            var favButton = $('<button>').html(selectedActor);
+            favButton.addClass('search');
+            $('.favorites').append(favButton);
+            favorites.push($('.active').html());
+        } else {
+            $('.message').html("Select an actor first!");
+        }
     }
 });
 
