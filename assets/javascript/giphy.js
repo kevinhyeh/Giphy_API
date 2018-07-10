@@ -8,7 +8,7 @@ for (i in topics) {
 };
 
 $('.message').html("Hello!" + "<br>" + "Click on a name to recieve gifs" + "<br>" +
-        "Add any name to the list");
+        "Add any name to the list" + "<br>" + "Gifs might take time to load when clicked");
 
 // add button function
 function addBut() {
@@ -43,7 +43,7 @@ $('.cleargifs').on('click', function() {
     $('.gifs').empty();
     $('#intro').addClass('message');
     if ($('.message').html() != "Hello!" + "<br>" + "Click on a name to recieve gifs" + "<br>" +
-        "Add any name to the list") {
+        "Add any name to the list" + "<br>" + "Gifs might take time to load when clicked") {
         $('.message').html("Your gifs have been cleared!");
     }
     $('.search').removeClass('active');
